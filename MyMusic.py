@@ -185,8 +185,8 @@ def login():
                 break
         
         if(i == len(cadastrados)-1):
-             print("Informações incorretas \n")
-             escolhaLC = int(input("\033[0;31;40mCaso deseje fazer o Login digite (1). \nCaso deseje se Cadastrar digite (2). \n\033[m"))
+             print("\033[31mInformações incorretas \n\033[m")
+             escolhaLC = int(input("\033[32mCaso deseje fazer o Login digite (1). \nCaso deseje se Cadastrar digite (2). \n\033[m"))
              escolha = escolha(escolhaLC)
              logCad(escolha)
         

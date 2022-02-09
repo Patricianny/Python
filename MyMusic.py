@@ -45,7 +45,7 @@ def login():
 
                                     #Opção 1 dentro de produto
                                     if(escoprod == 1):
-                                        nome = input("\033[35mDigite o Nome do Produto: \033[m")
+                                        nome = input("\033[35mDigite o Nome do Produto: \033[m").upper()
                                         while(nome == ""):
                                             print("\033[31mValor Inválido!\033[m")
                                             nome = input("\033[35mDigite o Nome do Produto: \033[m")
@@ -176,13 +176,60 @@ def login():
                                 print("\033[31mOpção Inválida!! \n\033[m")
                                 escomenu = int(input("\033[32m\n ~Menu de escolhas~ \n 1-Adicionar  vendedores. \n 2-Alterações nos Produtos \n 3-Sair \n\033[m"))
                             print("")
+                    
                     except ValueError:
                         print("\033[31mOpção Inválida!! \n\033[m")       
 
-                #Página Clientes
-                if(cadastrados[i][3] == "C"):
-                    print("Página dos Clientes")
-                break
+            #Página Clientes
+            elif(cadastrados[i][3] == "C"):
+                print("Página dos Clientes")
+                h = True
+                while(h):
+                    #Barra de Pesquisa
+                    barra = input("\033[35mDigite o produto que deseja pesquisar: \033[m").upper()
+                    j = True
+                    for i in range(len(instrumentos)):
+                        if(len(barra) > 2):
+                            if(barra in instrumentos[i][0]):
+                                print(instrumentos[i][0])
+                                j = False
+                            elif(len(instrumentos)-1 == i and j):
+                                print("\033[31mProduto não encontrado! \033[m \n")
+
+                            if(len(instrumentos)-1 == i and not(j)):
+                                print("\033[32mDesejar saber mais sobre algum desses instrumentos? (s/n)\033[m")
+                                opcao = str(input("")).lower()
+                                if(opcao == "s"):
+                                    pro = input("\nDigite o nome do produto:").upper() #cor
+                                    for i in range(len(instrumentos)):
+                                        if(pro == instrumentos[i][0] and "Esgotado" not in instrumentos[i]):
+                                            print(f"\033[36m\nNome: {instrumentos[i][0]} \nValor: {instrumentos[i][1]} \nQuantidade: {instrumentos[i][2]}\nDescrição: {instrumentos[i][3]} \nFabricante: {instrumentos[i][4]} \n\033[m")
+
+                                            #Recomendação
+                                            print("\n~ Recomendações ~")
+                                            for i in range(len(instrumentos)):
+                                                if(barra in instrumentos[i][0] and pro != instrumentos[i][0]):
+                                                    print(instrumentos[i][0])
+                                                    print("")
+
+                                        elif(pro == instrumentos[i][0] and "Esgotado" in instrumentos[i]): 
+                                            print(f"\033[36m\nNome: {instrumentos[i][0]} \nValor: {instrumentos[i][1]}\033[m \n\033[31mQuantidade: Esgotado \033[m\n\033[36mDescrição: {instrumentos[i][3]} \nFabricante: {instrumentos[i][4]} \n\033[m") 
+
+                                            #Recomendação
+                                            print("\033[32m\n~ Recomendações ~ \033[m")
+                                            for i in range(len(instrumentos)):
+                                                if(barra in instrumentos[i][0] and pro != instrumentos[i][0]):
+                                                    print(instrumentos[i][0])
+                                                    print("")
+                                elif(opcao == "n"):
+                                    pass
+                                else:
+                                    print("Opção Inválida \n") #cor
+                        
+                        elif(len(instrumentos)-1 == i):
+                            print("\033[31mOpção Inválida \033[m")
+                        
+            break
         
         if(i == len(cadastrados)-1):
              print("\033[31mInformações incorretas \n\033[m")
@@ -217,7 +264,7 @@ def logCad(escolhaLC):
             
                
 #MAIN
-instrumentos = [["GuitarraWoodstock", 1017.9, 7, "Guitarra Woodstock Series TG-530 Preta", "Tagima"], ["PianoDigital", 5241.5, 1, "Piano Digital Modelo P125B Preto", "Yamaha"]]
+instrumentos = [["GUITARRAWOODSTOCK", 1017.9, 7, "Guitarra Woodstock Series TG-530 Preta", "Tagima", "Esgotado"], ["PIANODIGITAL", 5241.5, 1, "Piano Digital Modelo P125B Preto", "Yamaha"], ["GUITARRATELECASTA", 2400.6, 3, "Guitarra Telecasta Series TC-530 Branco", "Yamaha"]]
 cadastrados = [["adm@gmail.com", "adm", "adm123", "V"], ["patty@gmail.com", "patty", "321patty", "C"]]
 
 while True:

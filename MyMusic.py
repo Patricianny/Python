@@ -13,7 +13,7 @@ def login():
                 f = True
                 while f:
                     try:
-                        escomenu = int(input("\033[32m\n ~Menu de escolhas~ \n 1-Adicionar  vendedores. \n 2-Alterações nos Produtos \n 3-Sair \n\033[m"))
+                        escomenu = int(input("\033[32m\n ~Menu de escolhas~ \n 1-Adicionar  vendedores. \n 2-Atualizar Cadastro \n 3-Alterações nos Produtos \n 4-Sair \n\033[m"))
                         while(f):
                             
                             #Opção 1 no menu de vendedor
@@ -31,10 +31,35 @@ def login():
                                             print("Pessoa não encontrada")
                                             a = input("\033[35mDeseja continuar? (s/n) \033[m")
                                 
-                                escomenu = int(input("\033[32m\n ~Menu de escolhas~ \n 1-Adicionar  vendedores. \n 2-Alterações nos Produtos \n 3-Sair \n\033[m"))
+                                escomenu = int(input("\033[32m\n ~Menu de escolhas~ \n 1-Adicionar  vendedores. \n 2-Atualizar Cadastro \n 3-Alterações nos Produtos \n 4-Sair \n\033[m"))
                             
                             #Opção 2 no menu de vendedor
                             elif(escomenu == 2):
+                                for i in range(len(cadastrados)):
+                                    if(cadastrados[i][0] == email):
+                                        new = int(input("\033[32m~ Digite o deseja modificar ~ \n1-Email\n2-Nome\n3-Senha\n4-Sair\033[m\n"))
+                                        while(new < 4):
+                                            if(new == 1):
+                                                newemail = str(input("\033[35mDigite seu email: \n\033[m"))
+                                                while not("@hotmail.com" in newemail or "@gmail.com" in newemail or "@outlook.com" in newemail): 
+                                                    newemail = str(input("\033[31mEmail inválido\033[m \n\033[35mDigite seu email: \n\033[m"))
+                                                cadastrados[i][0] = newemail  
+                                            
+                                            elif(new == 2):
+                                                newname = str(input("\033[35mDigite seu nome: \n\033[m"))
+                                                cadastrados[i][1] = newname
+                                            
+                                            elif(new == 3):
+                                                newsenha = str(input("\033[35mDigite sua senha contendo letras e números: \n\033[m"))
+                                                while (newsenha.isalpha() or newsenha.isdigit()):
+                                                    newsenha = str(input("\033[31mSenha inválida \033[m \n\033[35mDigite sua senha contendo letras e números: \n\033[m"))
+                                                cadastrados[i][2] = newsenha
+                                            new = int(input("\033[32m~ Digite o deseja modificar ~ \n1-Email\n2-Nome\n3-Senha\n4-Sair\033[m\n"))
+                                        print(cadastrados[i])
+                                escomenu = int(input("\033[32m\n ~Menu de escolhas~ \n 1-Adicionar  vendedores. \n 2-Atualizar Cadastro \n 3-Alterações nos Produtos \n 4-Sair \n\033[m"))
+
+                            #Opção 3 no menu de vendedor
+                            elif(escomenu == 3):
                                 
                                 #Menu da da Opção 2
                                 print("\033[32m\n 1-Adicionar Produto \n 2-Produtos Esgotados \n 3-Reestocar Produtos \n 4-Deletar Produtos \n 5-Mostrar Estoque \n 6-Sair\033[m")
@@ -153,7 +178,7 @@ def login():
                                     #Opção 5 dentro de produto
                                     elif(escoprod == 6):
                                         g = False
-                                        escomenu = 4
+                                        escomenu = 5
 
                                     #Opção inválida dentro de produto
                                     else:
@@ -164,17 +189,17 @@ def login():
                                         print("\033[32m\n 1-Adicionar Produto \n 2-Produtos Esgotados \n 3-Reestocar Produtos \n 4-Deletar Produtos \n 5-Mostrar Estoque \n 6-Sair\033[m")
                                         escoprod = int(input())
 
-                            #Opção 3 no menu de vendedor                  
-                            elif(escomenu == 3): 
+                            #Opção 4 no menu de vendedor                  
+                            elif(escomenu == 4): 
                                 f = False
                             
-                            #Opção 4 no menu de vendedor
-                            elif(escomenu == 4):
-                                escomenu = int(input("\033[32m\n ~Menu de escolhas~ \n 1-Adicionar  vendedores. \n 2-Alterações nos Produtos \n 3-Sair \n\033[m"))
+                            #Opção 5 no menu de vendedor
+                            elif(escomenu == 5):
+                                escomenu = escomenu = int(input("\033[32m\n ~Menu de escolhas~ \n 1-Adicionar  vendedores. \n 2-Atualizar Cadastro \n 3-Alterações nos Produtos \n 4-Sair \n\033[m"))
                             
                             else: 
                                 print("\033[31mOpção Inválida!! \n\033[m")
-                                escomenu = int(input("\033[32m\n ~Menu de escolhas~ \n 1-Adicionar  vendedores. \n 2-Alterações nos Produtos \n 3-Sair \n\033[m"))
+                                escomenu = int(input("\033[32m\n ~Menu de escolhas~ \n 1-Adicionar  vendedores. \n 2-Atualizar Cadastro \n 3-Alterações nos Produtos \n 4-Sair \n\033[m"))
                             print("")
                     
                     except ValueError:
@@ -182,7 +207,7 @@ def login():
 
             #Página Clientes
             elif(cadastrados[i][3] == "C"):
-                print("Página dos Clientes")
+                print("\033[32m~Página dos Clientes\033[m")
                 h = True
                 while(h):
                     #Barra de Pesquisa
@@ -200,7 +225,7 @@ def login():
                                 print("\033[32mDesejar saber mais sobre algum desses instrumentos? (s/n)\033[m")
                                 opcao = str(input("")).lower()
                                 if(opcao == "s"):
-                                    pro = input("\nDigite o nome do produto:").upper() #cor
+                                    pro = input("\033[35m\nDigite o nome do produto: \033[m").upper() 
                                     for i in range(len(instrumentos)):
                                         if(pro == instrumentos[i][0] and "Esgotado" not in instrumentos[i]):
                                             print(f"\033[36m\nNome: {instrumentos[i][0]} \nValor: {instrumentos[i][1]} \nQuantidade: {instrumentos[i][2]}\nDescrição: {instrumentos[i][3]} \nFabricante: {instrumentos[i][4]} \n\033[m")
@@ -224,10 +249,10 @@ def login():
                                 elif(opcao == "n"):
                                     pass
                                 else:
-                                    print("Opção Inválida \n") #cor
+                                    print("\033[31mOpção Inválida!!\n\033[m") 
                         
                         elif(len(instrumentos)-1 == i):
-                            print("\033[31mOpção Inválida \033[m")
+                            print("\033[31mOpção Inválida!!\033[m")
                         
             break
         
@@ -265,7 +290,7 @@ def logCad(escolhaLC):
                
 #MAIN
 instrumentos = [["GUITARRAWOODSTOCK", 1017.9, 7, "Guitarra Woodstock Series TG-530 Preta", "Tagima", "Esgotado"], ["PIANODIGITAL", 5241.5, 1, "Piano Digital Modelo P125B Preto", "Yamaha"], ["GUITARRATELECASTA", 2400.6, 3, "Guitarra Telecasta Series TC-530 Branco", "Yamaha"]]
-cadastrados = [["adm@gmail.com", "adm", "adm123", "V"], ["patty@gmail.com", "patty", "321patty", "C"]]
+cadastrados = [["adm@gmail.com", "adm", "adm123", "V"], ["patty@gmail.com", "patty", "321patty", "C"], ["robert@hotmail.com", "robert", "a123", "V"]]
 
 while True:
         try:
@@ -273,6 +298,5 @@ while True:
             if(escolhaLC == 1 or escolhaLC == 2):
                 logCad(escolhaLC)
         except ValueError:
-            
             print("\033[31mOpção Inválido!\033[m")
 

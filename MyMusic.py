@@ -4,13 +4,14 @@ def login():
     senha = str(input("\033[35mDigite sua senha: \033[m"))
     newemail = ""
     for i in range(len(cadastrados)):
+        f = True
+        z = True
         if(cadastrados[i][0] == email and cadastrados[i][2] == senha):
             
             #Página Vendedor
 
             if(cadastrados[i][3] == "V"):
                 print("\033[32m\n~ Página dos vendedores ~\033[m")
-                f = True
                 while f:
                     try:
                         escomenu = int(input("\033[32m\n ~ Menu de escolhas ~ \n 1-Adicionar  vendedores \n 2-Atualizar Cadastro \n 3-Alterações nos Produtos \n 4-Sair \n ➱ \033[m"))
@@ -37,8 +38,8 @@ def login():
                             elif(escomenu == 2):
                                 for i in range(len(cadastrados)):
                                     if(cadastrados[i][0] == email):
-                                        new = int(input("\n\033[32m ~ Digite o deseja modificar ~ \n 1-Email \n 2-Nome \n 3-Senha \n 4-Sair \n ➱ \033[m"))
-                                        while(new < 4):
+                                        new = int(input("\n\033[32m ~ Digite o deseja modificar ~ \n 1-Email \n 2-Nome \n 3-Senha \n 4-Deletar Cadastro \n 5-Sair \n ➱ \033[m"))
+                                        while(new < 5):
                                             if(new == 1):
                                                 newemail = str(input("\n\033[35mDigite seu email: \033[m"))
 
@@ -63,7 +64,20 @@ def login():
                                                     newsenha = str(input("\033[31mSenha inválida!!\n\033[m \n\033[35mDigite sua senha contendo letras e números: \033[m"))
                                                 cadastrados[i][2] = newsenha
 
-                                            new = int(input("\n\033[32m ~ Digite o deseja modificar ~ \n 1-Email \n 2-Nome \n 3-Senha \n 4-Sair \n ➱ \033[m"))
+                                            elif(new == 4):
+                                                excluir = input("\n\033[35m Tem certeza que deseja apagar sua conta? (s/n) \033[m").lower()
+                                                while(excluir != "s" and excluir != "n"):
+                                                    print("\033[31m Valor Inválido!!\033[m") #cor
+                                                    excluir = input("\n\033[35m Tem certeza que deseja apagar sua conta? (s/n) \033[m").lower()
+                                                if(excluir == "s"):
+                                                    for i in range(len(cadastrados)):
+                                                        if(email == cadastrados[i][0] or newemail == cadastrados[i][0]):
+                                                            cadastrados.remove(cadastrados[i])
+                                                            print("\033[31m Removido\033[m \n")
+                                                            print(cadastrados, "\n")
+                                                            login()
+
+                                            new = int(input("\n\033[32m ~ Digite o deseja modificar ~ \n 1-Email \n 2-Nome \n 3-Senha \n 4-Deletar Cadastro \n 5-Sair \n ➱ \033[m"))
 
                                         print(cadastrados[i])
 
@@ -221,16 +235,14 @@ def login():
                 print("\n\033[32m ~ Página dos Clientes ~\n\033[m")
 
                 #Menu de escolha
-                print("\033[32m ~ Menu de escolhas ~ \n 1-Atualizar Cadastro \n 2-Barra de Pesquisa \n 3-Deletar Conta \n 4-Sair\033[m")
+                print("\033[32m ~ Menu de escolhas ~ \n 1-Atualizar Cadastro \n 2-Barra de Pesquisa \n 3-Sair\033[m")
                 escocli = int(input("\033[32m ➱ \033[m"))
-                z = True
                 while(z):
                     if(escocli == 1):
                         for i in range(len(cadastrados)):
-                            print(i)
                             if(cadastrados[i][0] == email):
-                                new = int(input("\033[32m ~ Digite o deseja modificar ~ \n 1-Email \n 2-Nome \n 3-Senha \n 4-Sair \n ➱ \033[m"))
-                                while(new < 4):
+                                new = int(input("\n\033[32m ~ Digite o deseja modificar ~ \n 1-Email \n 2-Nome \n 3-Senha \n 4-Deletar Cadastro \n 5-Sair \n ➱ \033[m"))
+                                while(new < 5):
                                     if(new == 1):
                                         newemail = str(input("\033[35mDigite seu email: \033[m"))
 
@@ -248,20 +260,34 @@ def login():
                                                     print("\033[31mOpção Inválida!! \n\033[m")
                                                     newname = str(input("\033[35mDigite seu nome: \033[m")).lower()
                                                 cadastrados[j][1] = newname
+                                    
                                     elif(new == 3):
                                         newsenha = str(input("\033[35mDigite sua senha contendo letras e números: \033[m"))
                                         for k in range(len(cadastrados)):
-                                            if(email == cadastrados[k][0]):
+                                            if(email == cadastrados[k][0] or newemail == cadastrados[k][0]):
                                                 while(newsenha.isalpha() or newsenha.isdigit() or newsenha == "" or newsenha == senha):
                                                     newsenha = str(input("\033[31mSenha inválida!! \033[m \n\033[35mDigite sua senha contendo letras e números: \033[m"))
                                                 cadastrados[k][2] = newsenha
 
-                                    new = int(input("\033[32m ~ Digite o deseja modificar ~ \n 1-Email \n 2-Nome \n 3-Senha \n 4-Sair \n ➱ \033[m"))
+                                    elif(new == 4):
+                                        excluir = input("\n\033[35m Tem certeza que deseja apagar sua conta? (s/n) \033[m").lower()
+                                        while(excluir != "s" and excluir != "n"):
+                                            print("\033[31m Valor Inválido!!\033[m") #cor
+                                            excluir = input("\n\033[35m Tem certeza que deseja apagar sua conta? (s/n) \033[m").lower()
+                                        if(excluir == "s"):
+                                            for i in range(len(cadastrados)):
+                                                if(email == cadastrados[i][0] or newemail == cadastrados[i][0]):
+                                                    cadastrados.remove(cadastrados[i])
+                                                    print("\033[31m Removido\033[m \n")
+                                                    print(cadastrados, "\n")
+                                                    login()
+
+                                    new = int(input("\n\033[32m ~ Digite o deseja modificar ~ \n 1-Email \n 2-Nome \n 3-Senha \n 4-Deletar Cadastro \n 5-Sair \n ➱ \033[m"))
 
                                     print(cadastrados[i])
 
-                        escocli = int(input("\033[32m\n ~ Menu de escolhas ~ \n 1-Adicionar  vendedores. \n 2-Atualizar Cadastro \n 3-Alterações nos Produtos \n 4-Sair \n ➱ \033[m"))
-
+                        escocli = int(input("\033[32m ~ Menu de escolhas ~ \n 1-Atualizar Cadastro \n 2-Barra de Pesquisa \n 3-Sair \n ➱ \033[m"))
+                        
                     elif(escocli == 2):
                         h = True
                         while(h):
@@ -310,12 +336,15 @@ def login():
                                         print("\033[31mOpção Inválida!!\033[m")
                                     
                         break
-        
-        if(i == len(cadastrados)-1):
-             print("\033[31mInformações incorretas!!\n\033[m")
-             escolhaLC = int(input("\033[32mCaso deseje fazer o Login digite (1). \nCaso deseje se Cadastrar digite (2). \n➱ \033[m"))
-             escolha = escolha(escolhaLC)
-             logCad(escolha)
+                    
+                    elif(escocli == 3):
+                        escolhaLC = int(input("\n\033[32m Caso deseje fazer o Login digite (1). \n Caso deseje se Cadastrar digite (2). \n ➱ \033[m"))
+                        logCad(escolhaLC)
+
+        if(i == len(cadastrados)-1 and f):
+            print("\033[31mInformações incorretas!!\n\033[m")
+            escolhaLC = int(input("\033[32m Caso deseje fazer o Login digite (1). \n Caso deseje se Cadastrar digite (2). \n ➱ \033[m"))
+            logCad(escolhaLC)
         
             
 def logCad(escolhaLC):
@@ -350,7 +379,7 @@ cadastrados = [["adm@gmail.com", "adm", "adm123", "V"], ["patty@gmail.com", "pat
 
 while True:
         try:
-            escolhaLC = int(input("\033[32mCaso deseje fazer o Login digite (1). \nCaso deseje se Cadastrar digite (2). \n➱ \033[m"))
+            escolhaLC = int(input("\033[32m Caso deseje fazer o Login digite (1). \n Caso deseje se Cadastrar digite (2). \n ➱ \033[m"))
             if(escolhaLC == 1 or escolhaLC == 2):
                 logCad(escolhaLC)
         except ValueError:

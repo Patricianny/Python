@@ -1,7 +1,7 @@
 #Funções
 def login():
-    email = str(input("\033[35mDigite seu email: \033[m"))
-    senha = str(input("\033[35mDigite sua senha: \033[m"))
+    email = str(input("\033[35m Digite seu email: \033[m"))
+    senha = str(input("\033[35m Digite sua senha: \033[m"))
     newemail = ""
     for i in range(len(cadastrados)):
         f = True
@@ -21,16 +21,16 @@ def login():
                             if(escomenu == 1):
                                 a = "s"
                                 while a == "s":
-                                    nomeVend = str(input("\n\033[35mDigite o nome completo do novo vendedor: \033[m")).lower()
+                                    nomeVend = str(input("\n\033[35m Digite o nome completo do novo vendedor: \033[m")).lower()
                                     for i in range(len(cadastrados)):
                                         if nomeVend == cadastrados[i][1]:
                                             cadastrados[i][3] = "V"
                                             print(cadastrados)
-                                            a = input("\n\033[35mDeseja continuar? (s/n) \033[m")
+                                            a = input("\n\033[35m Deseja continuar? (s/n) \033[m")
                                             break
                                         if i == len(cadastrados)-1:
-                                            print("Pessoa não encontrada")
-                                            a = input("\n\033[35mDeseja continuar? (s/n) \033[m")
+                                            print(" Pessoa não encontrada")
+                                            a = input("\n\033[35m Deseja continuar? (s/n) \033[m")
                                 
                                 escomenu = int(input("\033[32m\n ~ Menu de escolhas ~ \n 1-Adicionar  vendedores. \n 2-Atualizar Cadastro \n 3-Alterações nos Produtos \n 4-Sair \n ➱ \033[m"))
                             
@@ -41,10 +41,10 @@ def login():
                                         new = int(input("\n\033[32m ~ Digite o deseja modificar ~ \n 1-Email \n 2-Nome \n 3-Senha \n 4-Deletar Cadastro \n 5-Sair \n ➱ \033[m"))
                                         while(new < 5):
                                             if(new == 1):
-                                                newemail = str(input("\n\033[35mDigite seu email: \033[m"))
+                                                newemail = str(input("\n\033[35m Digite seu email: \033[m"))
 
                                                 while not("@hotmail.com" in newemail or "@gmail.com" in newemail or "@outlook.com" in newemail) or newemail == email: 
-                                                    newemail = str(input("\033[31mEmail inválido!!\n\033[m \n\033[35mDigite seu email: \033[m"))
+                                                    newemail = str(input("\033[31m Email inválido!!\n\033[m \n\033[35mDigite seu email: \033[m"))
                                                 
                                                 cadastrados[i][0] = newemail  
                                             
@@ -52,16 +52,16 @@ def login():
                                                 for i in range(len(cadastrados)):
                                                     if(email == cadastrados[i][0] or newemail == cadastrados[i][0]):
                                                         name = cadastrados[i][1].lower()
-                                                        newname = str(input("\n\033[35mDigite seu nome: \033[m")).lower()
+                                                        newname = str(input("\n\033[35m Digite seu nome: \033[m")).lower()
                                                         while(newname == "" or newname == name or newname.isnumeric()):
-                                                            print("\033[31mOpção Inválida!! \n\033[m")
-                                                            newname = str(input("\033[35mDigite seu nome: \033[m")).lower()
+                                                            print("\033[31m Opção Inválida!! \n\033[m")
+                                                            newname = str(input("\033[35m Digite seu nome: \033[m")).lower()
                                                         cadastrados[i][1] = newname
 
                                             elif(new == 3):
-                                                newsenha = str(input("\n\033[35mDigite sua senha contendo letras e números: \033[m"))
+                                                newsenha = str(input("\n\033[35m Digite sua senha contendo letras e números: \033[m"))
                                                 while(newsenha.isalpha() or newsenha.isdigit() or newsenha == "" or newsenha == senha):
-                                                    newsenha = str(input("\033[31mSenha inválida!!\n\033[m \n\033[35mDigite sua senha contendo letras e números: \033[m"))
+                                                    newsenha = str(input("\033[31m Senha inválida!!\n\033[m \n\033[35mDigite sua senha contendo letras e números: \033[m"))
                                                 cadastrados[i][2] = newsenha
 
                                             elif(new == 4):
@@ -95,30 +95,30 @@ def login():
 
                                     #Opção 1 dentro de produto
                                     if(escoprod == 1):
-                                        nome = input("\n\033[35mDigite o Nome do Produto: \033[m").upper()
+                                        nome = input("\n\033[35m Digite o Nome do Produto: \033[m").upper()
                                         while(nome == ""):
-                                            print("\033[31mValor Inválido!!\033[m")
-                                            nome = input("\n\033[35mDigite o Nome do Produto: \033[m")
+                                            print("\033[31m Valor Inválido!!\033[m")
+                                            nome = input("\n\033[35m Digite o Nome do Produto: \033[m")
                                             
-                                        valor = str(input("\n\033[35mDigite o Valor do Produto: \033[m"))
+                                        valor = str(input("\n\033[35m Digite o Valor do Produto: \033[m"))
                                         while(valor.replace('.',',',1).isdigit() or valor == ""):
-                                            print("\033[31mValor Inválido!!\033[m")
-                                            valor = str(input("\n\033[35mDigite o Valor do Produto: \033[m"))
+                                            print("\033[31m Valor Inválido!!\033[m")
+                                            valor = str(input("\n\033[35m Digite o Valor do Produto: \033[m"))
                                         
-                                        quant = str(input("\n\033[35mDigite a Quantidade em estoque do Produto: \033[m"))
+                                        quant = str(input("\n\033[35m Digite a Quantidade em estoque do Produto: \033[m"))
                                         while(not(quant.isnumeric())):
-                                            print("\033[31mValor Inválido!!\033[m")
-                                            quant = str(input("\n\033[35mDigite a Quantidade em estoque do Produto: \033[m"))
+                                            print("\033[31m Valor Inválido!!\033[m")
+                                            quant = str(input("\n\033[35m Digite a Quantidade em estoque do Produto: \033[m"))
                                             
-                                        descri = input("\n\033[35mDigite a Descrição do Produto: \033[m")
+                                        descri = input("\n\033[35m Digite a Descrição do Produto: \033[m")
                                         while(descri == ""):
-                                            print("\033[31mValor Inválido!!\033[m")
-                                            descri = input("\n\033[35mDigite a Descrição do Produto: \033[m")
+                                            print("\033[31m Valor Inválido!!\033[m")
+                                            descri = input("\n\033[35m Digite a Descrição do Produto: \033[m")
                                             
-                                        fab = input("\n\033[35mDigite a Fabricante do Produto: \033[m")
+                                        fab = input("\n\033[35m Digite a Fabricante do Produto: \033[m")
                                         while(fab == ""):
-                                            print("\033[31mValor Inválido!!\033[m")
-                                            fab = input("\n\033[35mDigite a Fabricante do Produto: \033[m")
+                                            print("\033[31m Valor Inválido!!\033[m")
+                                            fab = input("\n\033[35m Digite a Fabricante do Produto: \033[m")
                                     
                                         #Adicição na lista os produtos
                                         valor = float(valor)
@@ -134,9 +134,9 @@ def login():
                                     elif(escoprod == 2):
                                         b = True
                                         if(len(instrumentos) == 0):
-                                            print("\033[34m\033[m\nNão Há Produtos Registrados!\033[m")
+                                            print("\033[34m\033[m\n Não Há Produtos Registrados!\033[m")
                                         while(b and len(instrumentos) != 0):
-                                            name = input("\n\033[35mDigite o nome do produto que você quer como Esgotado: \033[m")
+                                            name = input("\n\033[35m Digite o nome do produto que você quer como Esgotado: \033[m")
                                             if(name != "" and name.isalpha()):
                                                 for i in range(len(instrumentos)):
                                                     if(name == instrumentos[i][0] and "Esgotado" not in instrumentos[i]):
@@ -146,26 +146,26 @@ def login():
                                                         print(instrumentos[i])
                                                         b = False
                                                     elif("Esgotado" in instrumentos[i] and name == instrumentos[i][0]):
-                                                        print("\n\033[36mProduto já Esgotado!!\033[m")
+                                                        print("\n\033[36m Produto já Esgotado!!\033[m")
                                                         b = False
                                             else: 
-                                                print("\n\033[31mValor Inválido!!\033[m")
-                                                name = input("\n\033[35mDigite o nome do produto que você quer como Esgotado: \033[m")
+                                                print("\n\033[31m Valor Inválido!!\033[m")
+                                                name = input("\n\033[35m Digite o nome do produto que você quer como Esgotado: \033[m")
                                     
                                     #Opção 3 dentro de produto   
                                     elif(escoprod == 3):
                                         c = True
                                         if(len(instrumentos) == 0):
-                                            print("\nNão Há Produtos Registrados!")
+                                            print("\n Não Há Produtos Registrados!")
                                         while(c and len(instrumentos) != 0):
-                                            name = input("\n\033[35mDigite o nome do produto que você quer como Reestocar: \033[m")
+                                            name = input("\n\033[35m Digite o nome do produto que você quer como Reestocar: \033[m")
                                             while(name == ""):
-                                                print("\n\033[31mOpção Inválida!! \n\033[m")
-                                                name = input("\n\033[35mDigite o nome do produto que você quer como Reestocar: \033[m")
+                                                print("\n\033[31m Opção Inválida!! \n\033[m")
+                                                name = input("\n\033[35m Digite o nome do produto que você quer como Reestocar: \033[m")
                                             d = False
                                             for i in range(len(instrumentos)):
                                                 if(name == instrumentos[i][0] and "Esgotado" in instrumentos[i]):
-                                                    reestoque = int(input("\n\033[35mDigite a nova quantidade do Produto: \033[m"))
+                                                    reestoque = int(input("\n\033[35m Digite a nova quantidade do Produto: \033[m"))
                                                     instrumentos[i][2] = reestoque
                                                     instrumentos[i].pop()
                                                     print(instrumentos[i])
@@ -174,16 +174,16 @@ def login():
                                                 else:
                                                     c = False
                                             if(not(d)):
-                                                print("\n\033[31mOpção Inválida!!\n\033[m")
+                                                print("\n\033[31m Opção Inválida!!\n\033[m")
                                                     
 
                                     #Opção 4 dentro de produto      
                                     elif(escoprod == 4):
                                         e = False
-                                        name = input("\n\033[35mDigite o nome do produto que você quer Deletar: \033[m")
+                                        name = input("\n\033[35m Digite o nome do produto que você quer Deletar: \033[m")
                                         while(name == ""):
-                                            print("\n\033[31mOpção Inválida!! \n\033[m")
-                                            name = input("\n\033[35mDigite o nome do produto que você quer Deletar: \033[m")
+                                            print("\n\033[31m Opção Inválida!! \n\033[m")
+                                            name = input("\n\033[35m Digite o nome do produto que você quer Deletar: \033[m")
                                         entrou = True
                                         for i in range(len(instrumentos)):
                                             if(entrou):
@@ -193,7 +193,7 @@ def login():
                                                     e = True
                                                     entrou = False
                                         if(e == False):
-                                            print("\n\033[31mOpção Inválida!!\033[m")
+                                            print("\n\033[31m Opção Inválida!!\033[m")
 
                                     
                                     #Opção 5 dentro de produto
@@ -207,7 +207,7 @@ def login():
 
                                     #Opção inválida dentro de produto
                                     else:
-                                        print("\n\033[31mOpção Inválida!!\033[m")
+                                        print("\n\033[31m Opção Inválida!!\033[m")
                                     
                                     #Retorno
                                     if(g):
@@ -223,12 +223,12 @@ def login():
                                 escomenu = escomenu = int(input("\n\033[32m\n ~ Menu de escolhas ~ \n 1-Adicionar  vendedores. \n 2-Atualizar Cadastro \n 3-Alterações nos Produtos \n 4-Sair \n ➱ \033[m"))
                             
                             else: 
-                                print("\n\033[31mOpção Inválida!!\033[m")
+                                print("\n\033[31m Opção Inválida!!\033[m")
                                 escomenu = int(input("\n\033[32m\n ~ Menu de escolhas ~ \n 1-Adicionar  vendedores. \n 2-Atualizar Cadastro \n 3-Alterações nos Produtos \n 4-Sair \n ➱ \033[m"))
                             print("")
                     
                     except ValueError:
-                        print("\n\033[31mOpção Inválida!!\033[m")       
+                        print("\n\033[31m Opção Inválida!!\033[m")       
 
             #Página Clientes
             elif(cadastrados[i][3] == "C"):
@@ -244,7 +244,7 @@ def login():
                                 new = int(input("\n\033[32m ~ Digite o deseja modificar ~ \n 1-Email \n 2-Nome \n 3-Senha \n 4-Deletar Cadastro \n 5-Sair \n ➱ \033[m"))
                                 while(new < 5):
                                     if(new == 1):
-                                        newemail = str(input("\033[35mDigite seu email: \033[m"))
+                                        newemail = str(input("\033[35m Digite seu email: \033[m"))
 
                                         while not("@hotmail.com" in newemail or "@gmail.com" in newemail or "@outlook.com" in newemail) or newemail == email: 
                                             newemail = str(input("\033[31mEmail inválido!!\033[m \n\033[35mDigite seu email: \033[m"))
@@ -257,16 +257,16 @@ def login():
                                                 name = cadastrados[j][1].lower()
                                                 newname = str(input("\033[35mDigite seu nome: \033[m")).lower()
                                                 while(newname == "" or newname == name or newname.isnumeric()):
-                                                    print("\033[31mOpção Inválida!! \n\033[m")
-                                                    newname = str(input("\033[35mDigite seu nome: \033[m")).lower()
+                                                    print("\033[31m Opção Inválida!! \n\033[m")
+                                                    newname = str(input("\033[35m Digite seu nome: \033[m")).lower()
                                                 cadastrados[j][1] = newname
                                     
                                     elif(new == 3):
-                                        newsenha = str(input("\033[35mDigite sua senha contendo letras e números: \033[m"))
+                                        newsenha = str(input("\033[35m Digite sua senha contendo letras e números: \033[m"))
                                         for k in range(len(cadastrados)):
                                             if(email == cadastrados[k][0] or newemail == cadastrados[k][0]):
                                                 while(newsenha.isalpha() or newsenha.isdigit() or newsenha == "" or newsenha == senha):
-                                                    newsenha = str(input("\033[31mSenha inválida!! \033[m \n\033[35mDigite sua senha contendo letras e números: \033[m"))
+                                                    newsenha = str(input("\033[31m Senha inválida!! \033[m \n\033[35mDigite sua senha contendo letras e números: \033[m"))
                                                 cadastrados[k][2] = newsenha
 
                                     elif(new == 4):
@@ -292,7 +292,7 @@ def login():
                         h = True
                         while(h):
                                 #Barra de Pesquisa
-                                barra = input("\033[35mDigite o produto que deseja pesquisar: \033[m").upper()
+                                barra = input("\033[35m Digite o produto que deseja pesquisar: \033[m").upper()
                                 j = True
                                 for i in range(len(instrumentos)):
                                     if(len(barra) > 2):
@@ -300,29 +300,29 @@ def login():
                                             print(instrumentos[i][0])
                                             j = False
                                         elif(len(instrumentos)-1 == i and j):
-                                            print("\033[31mProduto não encontrado! \033[m \n")
+                                            print("\033[31m Produto não encontrado! \033[m \n")
 
                                         if(len(instrumentos)-1 == i and not(j)):
-                                            print("\033[32mDesejar saber mais sobre algum desses instrumentos? (s/n)\033[m")
+                                            print("\033[32m Desejar saber mais sobre algum desses instrumentos? (s/n)\033[m")
                                             opcao = str(input("")).lower()
                                             if(opcao == "s"):
-                                                pro = input("\033[35m\nDigite o nome do produto: \033[m").upper() 
+                                                pro = input("\033[35m\n Digite o nome do produto: \033[m").upper() 
                                                 for i in range(len(instrumentos)):
                                                     if(pro == instrumentos[i][0] and "Esgotado" not in instrumentos[i]):
-                                                        print(f"\033[36m\nNome: {instrumentos[i][0]} \nValor: {instrumentos[i][1]} \nQuantidade: {instrumentos[i][2]}\nDescrição: {instrumentos[i][3]} \nFabricante: {instrumentos[i][4]} \n\033[m")
+                                                        print(f"\033[36m\n Nome: {instrumentos[i][0]} \n Valor: {instrumentos[i][1]} \n Quantidade: {instrumentos[i][2]}\n Descrição: {instrumentos[i][3]} \n Fabricante: {instrumentos[i][4]} \n\033[m")
 
                                                         #Recomendação
-                                                        print("\n~ Recomendações ~")
+                                                        print("\n\033[32m ~ Recomendações ~ \033[m")
                                                         for i in range(len(instrumentos)):
                                                             if(barra in instrumentos[i][0] and pro != instrumentos[i][0]):
                                                                 print(instrumentos[i][0])
                                                                 print("")
 
                                                     elif(pro == instrumentos[i][0] and "Esgotado" in instrumentos[i]): 
-                                                        print(f"\033[36m\nNome: {instrumentos[i][0]} \nValor: {instrumentos[i][1]}\033[m \n\033[31mQuantidade: Esgotado \033[m\n\033[36mDescrição: {instrumentos[i][3]} \nFabricante: {instrumentos[i][4]} \n\033[m") 
+                                                        print(f"\033[36m\n Nome: {instrumentos[i][0]} \n Valor: {instrumentos[i][1]}\033[m \n\033[31m Quantidade: Esgotado \033[m\n\033[36m Descrição: {instrumentos[i][3]} \n Fabricante: {instrumentos[i][4]} \n\033[m") 
 
                                                         #Recomendação
-                                                        print("\033[32m\n~ Recomendações ~ \033[m")
+                                                        print("\033[32m\n ~ Recomendações ~ \033[m")
                                                         for i in range(len(instrumentos)):
                                                             if(barra in instrumentos[i][0] and pro != instrumentos[i][0]):
                                                                 print(instrumentos[i][0])
@@ -330,10 +330,10 @@ def login():
                                             elif(opcao == "n"):
                                                 pass
                                             else:
-                                                print("\033[31mOpção Inválida!!\n\033[m") 
+                                                print("\033[31m Opção Inválida!!\n\033[m") 
                                     
                                     elif(len(instrumentos)-1 == i):
-                                        print("\033[31mOpção Inválida!!\033[m")
+                                        print("\033[31m Opção Inválida!!\033[m")
                                     
                         break
                     
@@ -342,7 +342,7 @@ def login():
                         logCad(escolhaLC)
 
         if(i == len(cadastrados)-1 and f):
-            print("\033[31mInformações incorretas!!\n\033[m")
+            print("\033[31m Informações incorretas!!\n\033[m")
             escolhaLC = int(input("\033[32m Caso deseje fazer o Login digite (1). \n Caso deseje se Cadastrar digite (2). \n ➱ \033[m"))
             logCad(escolhaLC)
         
@@ -352,23 +352,23 @@ def logCad(escolhaLC):
         login()
             
     else:
-        email = str(input("\033[35mDigite seu email: \033[m"))
+        email = str(input("\033[35m Digite seu email: \033[m"))
         while not("@hotmail.com" in email or "@gmail.com" in email or "@outlook.com" in email): 
-            email = str(input("\033[31mEmail inválido!!\033[m \n\033[35mDigite seu email: \033[m"))            
+            email = str(input("\033[31m Email inválido!!\033[m \n\033[35m Digite seu email: \033[m"))            
 
-        nome = str(input("\033[35mDigite seu nome: \033[m"))
+        nome = str(input("\033[35m Digite seu nome: \033[m"))
 
-        senha = str(input("\033[35mDigite sua senha contendo letras e números: \033[m"))
+        senha = str(input("\033[35m Digite sua senha contendo letras e números: \033[m"))
         while (senha.isalpha() or senha.isdigit()):
-            senha = str(input("\033[31mSenha inválida!! \033[m \n\033[35mDigite sua senha contendo letras e números: \033[m"))
+            senha = str(input("\033[31m Senha inválida!! \033[m \n\033[35m Digite sua senha contendo letras e números: \033[m"))
         categoria = "C"
 
         usuario = [email, nome, senha, categoria]
         cadastrados.append(usuario)
         print(cadastrados)
 
-        print("Cadastro Concluido!")
-        print(" ")
+        print("/033[32m Cadastro Concluido!\033[m")
+        print("")
         login()
             
                
@@ -383,5 +383,5 @@ while True:
             if(escolhaLC == 1 or escolhaLC == 2):
                 logCad(escolhaLC)
         except ValueError:
-            print("\033[31mOpção Inválido!!\033[m")
+            print("\033[31m Opção Inválido!!\033[m")
 

@@ -1,11 +1,17 @@
 #Funções
+from sys import call_tracing
+
+
 def login():
+    t = True
     email = str(input("\033[35m Digite seu email: \033[m"))
     senha = str(input("\033[35m Digite sua senha: \033[m"))
     newemail = ""
     for i in range(len(cadastrados)):
         f = True
         z = True
+        r = True
+        carrinho = []
         if(cadastrados[i][0] == email and cadastrados[i][2] == senha):
             
             #Página Vendedor
@@ -236,7 +242,7 @@ def login():
                 print("\n\033[32m ~ Página dos Clientes ~\n\033[m")
 
                 #Menu de escolha
-                print("\033[32m ~ Menu de escolhas ~ \n 1-Atualizar Cadastro \n 2-Barra de Pesquisa \n 3-Sair\033[m")
+                print("\033[32m ~ Menu de escolhas ~ \n 1-Atualizar Cadastro \n 2-Barra de Pesquisa \n 3-Deletar item do carrinho \n 4-Finalizar compra \n 5-Sair\033[m")
                 escocli = int(input("\033[32m ➱ \033[m"))
                 while(z):
                     if(escocli == 1):
@@ -287,7 +293,7 @@ def login():
 
                                     new = int(input("\n\033[32m ~ Digite o deseja modificar ~ \n 1-Email \n 2-Nome \n 3-Senha \n 4-Deletar Cadastro \n 5-Sair \n ➱ \033[m"))
 
-                        escocli = int(input("\n\033[32m ~ Menu de escolhas ~ \n 1-Atualizar Cadastro \n 2-Barra de Pesquisa \n 3-Sair \n ➱ \033[m"))
+                        escocli = int(input("\n\033[32m ~ Menu de escolhas ~ \n 1-Atualizar Cadastro \n 2-Barra de Pesquisa \n 3-Deletar item do carrinho \n 4-Finalizar compra \n 5-Sair \n ➱ \033[m"))
                         
                     elif(escocli == 2):
                         h = True
@@ -310,6 +316,8 @@ def login():
                                                 for i in range(len(instrumentos)):
                                                     if(pro == instrumentos[i][0] and "Esgotado" not in instrumentos[i]):
                                                         print(f"\033[36m\n Nome: {instrumentos[i][0]} \n Valor: {instrumentos[i][1]} \n Quantidade: {instrumentos[i][2]}\n Descrição: {instrumentos[i][3]} \n Fabricante: {instrumentos[i][4]} \n\033[m")
+                                                        prod = instrumentos[i]
+
 
                                                         #Recomendação
                                                         print("\n\033[32m ~ Recomendações ~ \033[m")
@@ -317,6 +325,16 @@ def login():
                                                             if(barra in instrumentos[i][0] and pro != instrumentos[i][0]):
                                                                 print(f" {instrumentos[i][0]}")
                                                                 print("")
+                                                            
+                                                        #carrinho
+                                                        escocar = input("\nDeseja adicionar o item ao carrinho? (s/n) ").lower() #cor
+                                                        while(escocar != "s" and escocar != "n"):
+                                                            print("Opção Inválida!!") #cor
+                                                            escocar = input("Deseja adicionar o item ao carrinho? (s/n)").lower()
+                                                        if(escocar == 's'):
+                                                            carrinho.append(prod)
+                                                            print(carrinho)
+
 
                                                     elif(pro == instrumentos[i][0] and "Esgotado" in instrumentos[i]): 
                                                         print(f"\033[36m\n Nome: {instrumentos[i][0]} \n Valor: {instrumentos[i][1]}\033[m \n\033[31m Quantidade: Esgotado \033[m\n\033[36m Descrição: {instrumentos[i][3]} \n Fabricante: {instrumentos[i][4]} \n\033[m") 
@@ -334,18 +352,94 @@ def login():
                                     
                                     elif(len(instrumentos)-1 == i):
                                         print("\033[31m Opção Inválida!!\033[m")
-                                    
-                        break
+                                
+                                escocli = int(input("\n\033[32m ~ Menu de escolhas ~ \n 1-Atualizar Cadastro \n 2-Barra de Pesquisa \n 3-Deletar item do carrinho \n 4-Finalizar compra \n 5-Sair \n ➱ \033[m"))   
+                                h = False
+                                t = False
                     
                     elif(escocli == 3):
+                        if(carrinho == []):
+                            print("Nenhum item encontrado")
+                        else:
+                            print("Esse são seus itens do carrinho: ")
+                            for c in carrinho:
+                                print(c)
+                            delcar = input("Qual o nome do produto que deseja deletar? ").upper()
+                            for e in range(len(carrinho)):
+                                if(carrinho[e][0] == delcar):
+                                    carrinho.remove(carrinho[e])
+                                    print("Instrumento deletado")
+                                    r = False
+                                    break
+                                elif(e == len(carrinho)-1 and r):
+                                    print("Item não encontrado!!")
+
+                            print(carrinho)
+                        escocli = int(input("\n\033[32m ~ Menu de escolhas ~ \n 1-Atualizar Cadastro \n 2-Barra de Pesquisa \n 3-Deletar item do carrinho \n 4-Finalizar compra \n 5-Sair \n ➱ \033[m")) 
+
+                    elif(escocli == 4):
+                        ender = input("Digite o endereço de entrega: ")
+                        while(ender == ""):
+                            print("Opção Inválida!!")
+                            ender = input("Digite o endereço de entrega: ")
+                        menufim = input("\n\033[32m ~ Forma de Pagamento ~ \n 1-Cartão \n 2-Boleto \n 3-Cancelar \n ➱ \033[m")
+                        while(menufim != "1" and menufim != "2" and menufim != "3"):
+                            print("Opção Inválida!!")
+                            menufim = input("\n\033[32m ~ Forma de Pagamento ~ \n 1-Cartão \n 2-Boleto \n 3-Cancelar \n ➱ \033[m")
+                        if(menufim == "1"):
+                            if(carrinho != []):
+                                cartnum = (input("Digite o número do Cartão: "))
+                                while(not(cartnum.isnumeric()) or len(cartnum) != 16):
+                                    print("Opção Inválida!!")
+                                    cartnum = (input("Digite o número do Cartão: "))
+
+                                cvc = (input("\nDigite o CVC: "))
+                                while(not(cvc.isnumeric()) or len(cvc) != 3):
+                                    print("Opção Inválida!!")
+                                    cvc = (input("\nDigite o CVC: "))
+
+                                data = (input("\nDigite a Data de Validade: "))
+                                while(not(data.isnumeric()) or len(data) != 6):
+                                    print("Opção Inválida!!")
+                                    data = (input("\nDigite a Data de Validade: "))
+
+                                cpf = (input("\nDigite o seu CPF: "))
+                                while(not(cpf.isnumeric()) or len(cpf) != 11):
+                                    print("Opção Inválida!!")
+                                    cpf = (input("\nDigite o seu CPF: "))
+
+                                print("\nEssa é a sua lista de compras ")
+                                print(carrinho)
+                                confirmvend = input("\nConfirmar Comprar: (s/n) ").lower()
+                                while(confirmvend != "s" and confirmvend != "n"):
+                                    print("Opção Inválida!!")
+                                    confirmvend = input("Confirmar Comprar: (s/n) ").lower()
+                                if(confirmvend == "s"):
+                                    print("Compra Confirmada!")
+                                    carrinho = []
+                                    print("\nSeu carrinho foi atualizado ")
+                                    print(carrinho)
+                                elif(confirmvend == "n"): 
+                                    print("Pedido cancelado")
+                            else:
+                                print("Carrinho Vazio")
+
+                        elif(menufim == "2"):
+                            pass
+                        elif(menufim == "3"):
+                            pass
+
+                        escocli = int(input("\n\033[32m ~ Menu de escolhas ~ \n 1-Atualizar Cadastro \n 2-Barra de Pesquisa \n 3-Deletar item do carrinho \n 4-Finalizar compra \n 5-Sair \n ➱ \033[m"))
+
+                    elif(escocli == 5):
                         escolhaLC = int(input("\n\033[32m Caso deseje fazer o Login digite (1). \n Caso deseje se Cadastrar digite (2). \n ➱ \033[m"))
                         logCad(escolhaLC)
+                        
 
-        if(i == len(cadastrados)-1 and f):
+        if(i == len(cadastrados)-1 and f and t):
             print("\033[31m Informações incorretas!!\n\033[m")
             escolhaLC = int(input("\033[32m Caso deseje fazer o Login digite (1). \n Caso deseje se Cadastrar digite (2). \n ➱ \033[m"))
             logCad(escolhaLC)
-        
             
 def logCad(escolhaLC):
     if(escolhaLC == 1):
@@ -373,7 +467,8 @@ def logCad(escolhaLC):
             
                
 #MAIN
-instrumentos = [["GUITARRAWOODSTOCK", 1017.9, 7, "Guitarra Woodstock Series TG-530 Preta", "Tagima", "Esgotado"], ["PIANODIGITAL", 5241.5, 1, "Piano Digital Modelo P125B Preto", "Yamaha"], ["GUITARRATELECASTA", 2400.6, 3, "Guitarra Telecasta Series TC-530 Branco", "Yamaha"]]
+
+instrumentos = [["GUITARRAWOODSTOCK", 1017.9, 7, "Guitarra Woodstock Series TG-530 Preta", "Tagima", "Esgotado"], ["PIANO", 5241.5, 1, "Piano Digital Modelo P125B Preto", "Yamaha"], ["GUITARRATELECASTA", 2400.6, 3, "Guitarra Telecasta Series TC-530 Branco", "Yamaha"]]
 
 cadastrados = [["adm@gmail.com", "adm", "adm123", "V"], ["patty@gmail.com", "patty", "321patty", "C"], ["robert@hotmail.com", "robert", "a123", "V"]]
 
